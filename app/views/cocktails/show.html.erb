@@ -1,0 +1,8 @@
+<h2><%= @cocktail.name %></h2>
+<div class="row">
+  <% @cocktail.doses.each do |dose|%>
+    <div class="col-xs-3"><%= dose.ingredient.name %></div>
+    <div class="col-xs-3"><%= dose.quantity.to_s + " cl" %></div>
+  <% end %>
+  <div class="col-xs-3"><%= link_to "Ajouter un ingredient", new_cocktail_dose_path(@cocktail) %></div>
+</div>

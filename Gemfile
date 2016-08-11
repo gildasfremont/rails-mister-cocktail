@@ -4,6 +4,13 @@ source 'https://rubygems.org'
 #heroku prep
 ruby '2.3.1'
 
+#seed faker
+gem 'faker'
+
+#error handling
+gem 'better_errors'
+gem 'binding_of_caller'
+
 #style
 gem 'bootstrap-sass'
 gem 'font-awesome-sass'
