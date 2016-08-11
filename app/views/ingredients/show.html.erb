@@ -6,7 +6,12 @@
     <a id="add-cocktail">Ajouter un cocktail à base de <%= @ingredient.name %></a>
   </li>
   <li class="list-group-item hidden" id="add-cocktail-form" style="background: #fafafa">
-    <%= render "./cocktails/form" %>
+    <div>
+      <%= simple_form_for @cocktail do |f| %>
+      <%= f.input :name, label: false, placeholder: "Donnez-lui un nom" %>
+      <%= f.button :submit, "Ajouter" %> <%= link_to 'Annuler', ingredient_path(@ingredient), class: "btn btn-link" %>
+      <% end %>
+    </div>
   </li>
   <% @cocktails.each do |cocktail|%>
     <li class="list-group-item">

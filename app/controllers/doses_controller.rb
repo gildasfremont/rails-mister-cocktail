@@ -24,6 +24,7 @@ class DosesController < ApplicationController
         redirect_to cocktail_path(cocktail)
       else
         redirect_to cocktail_path(cocktail)
+      end
     end
   end
 
