@@ -10,6 +10,18 @@
           </div>
         </li>
         <% end %>
-    <li class="list-group-item"><%= link_to "Ajouter/Modifier un ingredient", new_cocktail_dose_path(@cocktail) %></li>
+<!--     <li class="list-group-item"><%#= link_to "Ajouter/Modifier un ingredient", new_cocktail_dose_path(@cocktail) %></li> -->
+    <li class="list-group-item">
+      <div style="padding: 15px"></div>
+      <h3>Ajoutez un ingredient ou modifiez ses quantités :</h3>
+      <div style="padding: 10px"></div>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.input :ingredient, collection: @ingredients, selected: @ingredients.first %>
+        <p><%= link_to "Ajouter un ingredient", "#" %></p>
+        <%= f.input :quantity %>
+        <%= f.input :description %>
+        <%= f.button :submit %>
+      <% end %>
+    </li>
   </ul>
 </div>
