@@ -1,10 +1,12 @@
+<%= link_to "< Liste des cocktails", cocktails_path %>
+<div style="padding: 15px"></div>
 <ul class="list-group">
-  <li class="list-group-item" style="background: #ecf0f1"><h2>Cocktails</h2></li>
+  <li class="list-group-item" style="background: #ecf0f1"><h2><%= @ingredient.name.capitalize %></h2></li>
   <li class="list-group-item" id='no-cocktail'>
-    <a id="add-cocktail">Ajouter un cocktail</a>
+    <a id="add-cocktail">Ajouter un cocktail à base de <%= @ingredient.name %></a>
   </li>
   <li class="list-group-item hidden" id="add-cocktail-form" style="background: #fafafa">
-    <%= render "form" %>
+    <%= render "./cocktails/form" %>
   </li>
   <% @cocktails.each do |cocktail|%>
     <li class="list-group-item">
@@ -28,4 +30,3 @@
     });
   })
 </script>
-
