@@ -1,13 +1,10 @@
 <ul class="list-group">
-  <li class="list-group-item" style="background: #ecf0f1"><h2>Coktails</h2></li>
-  <li class="list-group-item">
-    <div>
-
-      <a id="add-cocktail">Ajouter un cocktail</a>
-      <div class="hidden" id="add-cocktail-form">
-        <%= render "form" %>
-      </div>
-    </div>
+  <li class="list-group-item" style="background: #ecf0f1"><h2>Cocktails</h2></li>
+  <li class="list-group-item" id='no-cocktail'>
+    <a id="add-cocktail">Ajouter un cocktail</a>
+  </li>
+  <li class="list-group-item hidden" id="add-cocktail-form" style="background: #fafafa">
+    <%= render "form" %>
   </li>
   <% @cocktails.each do |cocktail|%>
     <li class="list-group-item">
@@ -20,12 +17,15 @@
   <li class="list-group-item" style="background: #ecf0f1"></li>
 </ul>
 
+<% item = "cocktail" %>
+
 <script type="text/javascript">
   $(document).ready (function() {
-    $("#add-cocktail").click(function(element) {
+    $("<%= "#no-#{item}" %>").click(function(element) {
       $(this).slideUp(0);
-      $("#add-cocktail-form").removeClass("hidden");
+      $("<%= "#add-#{item}-form" %>").removeClass("hidden");
       {return false;};
     });
   })
 </script>
+

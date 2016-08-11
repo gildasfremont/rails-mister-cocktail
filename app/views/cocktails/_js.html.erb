@@ -1,0 +1,9 @@
+<script type="text/javascript">
+  $(document).ready (function() {
+    $("<%= "#add-#{ item }" %>").click(function(element) {
+      $(this).slideUp(0);
+      $("<%= "#add-#{ item }-form" %>").removeClass("hidden");
+      {return false;};
+    });
+  })
+</script>

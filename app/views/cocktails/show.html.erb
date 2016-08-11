@@ -12,12 +12,10 @@
     </li>
     <% end %>
     <li class="list-group-item" id="no-ingredient"><a id="add-ingredient" style="padding-left : 10px">Ajouter un ingredient</a></li>
-    <li class="list-group-item hidden" id="ingredient-form">
-      <div style="padding: 10px"></div>
+    <li class="list-group-item hidden" id="add-ingredient-form" style="background: #fafafa">
       <%= simple_form_for [@cocktail, @dose] do |f| %>
         <%= f.input :ingredient, collection: @ingredients, selected: @ingredients.first %>
-        <%= f.input :quantity %>
-        <%= f.input :description %>
+        <%= f.input :quantity, label: "Quantité" %>
         <%= f.button :submit, "Ajouter l'ingredient" %><%= link_to 'Annuler', cocktail_path(@cocktail), class: "btn btn-link" %>
       <% end %>
     </li>
@@ -25,11 +23,13 @@
   </ul>
 </div>
 
+<% item = "ingredient" %>
+
 <script type="text/javascript">
   $(document).ready (function() {
-    $("#add-ingredient").click(function(element) {
-      $("#no-ingredient").slideUp(0);
-      $("#ingredient-form").removeClass("hidden");
+    $("<%= "#no-#{item}" %>").click(function(element) {
+      $(this).slideUp(0);
+      $("<%= "#add-#{item}-form" %>").removeClass("hidden");
       {return false;};
     });
   })
