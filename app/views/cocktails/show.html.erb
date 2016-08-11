@@ -1,8 +1,15 @@
+<%= link_to "< Liste des cocktails", cocktails_path %>
 <h2><%= @cocktail.name %></h2>
 <div class="row">
-  <% @cocktail.doses.each do |dose|%>
-    <div class="col-xs-3"><%= dose.ingredient.name %></div>
-    <div class="col-xs-3"><%= dose.quantity.to_s + " cl" %></div>
-  <% end %>
-  <div class="col-xs-3"><%= link_to "Ajouter un ingredient", new_cocktail_dose_path(@cocktail) %></div>
+  <ul class="list-group">
+        <% @cocktail.doses.each do |dose|%>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-xs-3"><%= dose.ingredient.name %></div>
+            <div class="col-xs-1 col-xs-offset-8"><span><%= "#{dose.quantity} cl" %></span></div>
+          </div>
+        </li>
+        <% end %>
+    <li class="list-group-item"><%= link_to "Ajouter/Modifier un ingredient", new_cocktail_dose_path(@cocktail) %></li>
+  </ul>
 </div>

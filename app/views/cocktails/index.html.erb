@@ -1,7 +1,12 @@
-<h3><%= link_to 'Ajouter un cocktail', new_cocktail_path %></h2>
-<% @cocktails.each do |cocktail|%>
-  <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h3>
-  <div><% cocktail.ingredients.each do |ingredient| %>
-      <%= ingredient.name %>
-    <% end %></div>
-<% end %>
+<%= link_to 'Ajouter un cocktail', new_cocktail_path %>
+<div style="padding: 10px"></div>
+<ul class="list-group">
+  <% @cocktails.each do |cocktail|%>
+    <li class="list-group-item">
+      <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h3>
+      <div><% cocktail.ingredients.each do |ingredient| %>
+          <span class="label label-success"><%= ingredient.name %></span>
+        <% end %></div>
+    </li>
+  <% end %>
+</ul>
