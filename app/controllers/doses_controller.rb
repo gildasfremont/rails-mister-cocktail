@@ -13,15 +13,18 @@ class DosesController < ApplicationController
       existing_dose.quantity = params[:dose][:quantity]
       existing_dose.description = params[:dose][:description]
       existing_dose.save
+      redirect_to cocktail_path(cocktail)
     else
       dose = Dose.new
       dose.quantity = params[:dose][:quantity]
       dose.description = params[:dose][:description]
       dose.ingredient = ingredient
       dose.cocktail = cocktail
-      dose.save
+      if dose.save
+        redirect_to cocktail_path(cocktail)
+      else
+        redirect_to cocktail_path(cocktail)
     end
-    redirect_to cocktail_path(cocktail)
   end
 
   def destroy
