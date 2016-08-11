@@ -2,26 +2,35 @@
 <h2><%= @cocktail.name %></h2>
 <div class="row">
   <ul class="list-group">
-        <% @cocktail.doses.each do |dose|%>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-xs-9"><%= dose.ingredient.name %></div>
-            <div class="col-xs-1"><span><%= "#{dose.quantity} cl" %></span></div><div class="col-xs-2"><%= link_to "Supprimer", [@cocktail, dose], method: :delete %></div>
-          </div>
-        </li>
-        <% end %>
-<!--     <li class="list-group-item"><%#= link_to "Ajouter/Modifier un ingredient", new_cocktail_dose_path(@cocktail) %></li> -->
+    <li class="list-group-item" style="background: #ecf0f1"><strong>Ingrédients</strong></li>
+    <% @cocktail.doses.each do |dose|%>
     <li class="list-group-item">
-      <div style="padding: 15px"></div>
-      <h3>Ajoutez un ingredient ou modifiez ses quantités :</h3>
+      <div class="row">
+        <div class="col-xs-9"><%= dose.ingredient.name %></div>
+        <div class="col-xs-1"><span><%= "#{dose.quantity} cl" %></span></div><div class="col-xs-2"><%= link_to "Supprimer", [@cocktail, dose], method: :delete %></div>
+      </div>
+    </li>
+    <% end %>
+    <li class="list-group-item" id="no-ingredient"><a id="add-ingredient" style="padding-left : 10px">Ajouter un ingredient</a></li>
+    <li class="list-group-item hidden" id="ingredient-form">
       <div style="padding: 10px"></div>
       <%= simple_form_for [@cocktail, @dose] do |f| %>
         <%= f.input :ingredient, collection: @ingredients, selected: @ingredients.first %>
-        <p><%= link_to "Ajouter un ingredient", "#" %></p>
         <%= f.input :quantity %>
         <%= f.input :description %>
-        <%= f.button :submit %>
+        <%= f.button :submit, "Ajouter l'ingredient" %><%= link_to 'Annuler', cocktail_path(@cocktail), class: "btn btn-link" %>
       <% end %>
     </li>
+    <li class="list-group-item" style="background: #ecf0f1"></li>
   </ul>
 </div>
+
+<script type="text/javascript">
+  $(document).ready (function() {
+    $("#add-ingredient").click(function(element) {
+      $("#no-ingredient").slideUp(0);
+      $("#ingredient-form").removeClass("hidden");
+      {return false;};
+    });
+  })
+</script>

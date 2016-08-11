@@ -1,0 +1,6 @@
+<div>
+  <%= simple_form_for @cocktail do |f| %>
+  <%= f.input :name, label: false, placeholder: "Donnez-lui un nom" %>
+  <%= f.button :submit, "Ajouter" %> <%= link_to 'Annuler', cocktails_path, class: "btn btn-link" %>
+  <% end %>
+</div>

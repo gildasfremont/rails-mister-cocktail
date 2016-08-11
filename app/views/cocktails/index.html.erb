@@ -1,6 +1,14 @@
-<%= link_to 'Ajouter un cocktail', new_cocktail_path %>
-<div style="padding: 10px"></div>
 <ul class="list-group">
+  <li class="list-group-item" style="background: #ecf0f1"><h2>Coktails</h2></li>
+  <li class="list-group-item">
+    <div>
+
+      <a id="add-cocktail">Ajouter un cocktail</a>
+      <div class="hidden" id="add-cocktail-form">
+        <%= render "form" %>
+      </div>
+    </div>
+  </li>
   <% @cocktails.each do |cocktail|%>
     <li class="list-group-item">
       <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h3>
@@ -9,4 +17,15 @@
         <% end %></div>
     </li>
   <% end %>
+  <li class="list-group-item" style="background: #ecf0f1"></li>
 </ul>
+
+<script type="text/javascript">
+  $(document).ready (function() {
+    $("#add-cocktail").click(function(element) {
+      $(this).slideUp(0);
+      $("#add-cocktail-form").removeClass("hidden");
+      {return false;};
+    });
+  })
+</script>
