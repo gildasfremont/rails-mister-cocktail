@@ -3,7 +3,15 @@
     <div style="display: flex; align-items: center; justify-content: space-between">
       <div>
         <h2>Cocktails</h2>
-        avec <span class="label label-info"><%= @ingredient.name.capitalize %></span> <span class="label label-default"><%= link_to "Tous les ingredients", cocktails_path %></span>
+        <div>
+          avec <span class="label label-info"><%= @ingredient.name.capitalize %></span>
+          <span class="label label-primary">
+          <%= link_to cocktails_path do%>
+            Supprimer le filtre
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          <% end %>
+          </span>
+        </div>
       </div>
       <div >
         <form id="live-search" action="" class="form-inline" method="post">
@@ -15,14 +23,14 @@
     </div>
   </li>
   <li class="list-group-item" id='add-cocktail'>
-    <a id="add-cocktail">Ajouter un cocktail</a>
+    <a href="#" id="add-cocktail">Ajouter un cocktail</a>
   </li>
   <li class="list-group-item hidden" id="add-cocktail-form" style="background: #fafafa">
     <%= render "cocktails/form-add-cocktail" %>
   </li>
   <% @cocktails.each do |cocktail|%>
     <li class="list-group-item">
-      <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h3>
+      <p style="font-size: 1.5em"><%= link_to cocktail.name, cocktail_path(cocktail) %></p>
       <div><% cocktail.ingredients.each do |ingredient| %>
           <span class="label label-info"><%= link_to ingredient.name, ingredient_path(ingredient) %></span>
         <% end %></div>
