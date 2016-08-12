@@ -1,6 +1,19 @@
-<ul class="list-group">
-  <li class="list-group-item" style="background: #ecf0f1"><h2>Cocktails</h2></li>
-  <li class="list-group-item" id='no-cocktail'>
+<ul class="list-group" id="cocktail-list">
+  <li class="list-group-item" style="background: #ecf0f1" id="title">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <div>
+        <h2>Cocktails</h2>
+      </div>
+      <div >
+        <form id="live-search" action="" class="form-inline" method="post">
+          <fieldset>
+            <input type="text" class="text-input form-control" id="filter" value="" placeholder="Chercher un cocktail..."/>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </li>
+  <li class="list-group-item" id='add-cocktail'>
     <a id="add-cocktail">Ajouter un cocktail</a>
   </li>
   <li class="list-group-item hidden" id="add-cocktail-form" style="background: #fafafa">
@@ -14,18 +27,39 @@
         <% end %></div>
     </li>
   <% end %>
-  <li class="list-group-item" style="background: #ecf0f1"></li>
+  <li class="list-group-item" style="background: #ecf0f1" id="bottom"></li>
 </ul>
 
 <% item = "cocktail" %>
 
 <script type="text/javascript">
   $(document).ready (function() {
-    $("<%= "#no-#{item}" %>").click(function(element) {
+    $("<%= "#add-#{item}" %>").click(function(element) {
       $(this).slideUp(0);
       $("<%= "#add-#{item}-form" %>").removeClass("hidden");
       $("#cocktail_name").focus();
       {return false;};
+    });
+    $("#filter").keyup(function(){
+
+        // Retrieve the input field text and reset the count to zero
+        var filter = $(this).val();
+
+        // Loop through the comment list
+        $("#cocktail-list li").each(function(){
+
+            // If the list item does not contain the text phrase fade it out
+            if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                $(this).slideUp(0);
+
+            // Show the list item if the phrase matches
+            } else {
+                $(this).show(0);
+            };
+            $("#add-cocktail").show(0);
+            $("#title").show(0);
+            $("#bottom").show(0);
+        });
     });
   })
 </script>
