@@ -7,6 +7,9 @@ ruby '2.3.1'
 #seed faker
 gem 'faker'
 
+#images hosting
+gem 'figaro'
+
 #error handling
 gem 'better_errors'
 gem 'binding_of_caller'
