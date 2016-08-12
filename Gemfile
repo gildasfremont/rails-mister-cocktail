@@ -9,6 +9,7 @@ gem 'faker'
 
 #images hosting
 gem 'figaro'
+gem 'cloudinary', '1.1.0'
 
 #error handling
 gem 'better_errors'

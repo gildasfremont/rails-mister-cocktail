@@ -4,13 +4,13 @@
     <a id="add-cocktail">Ajouter un cocktail</a>
   </li>
   <li class="list-group-item hidden" id="add-cocktail-form" style="background: #fafafa">
-    <%= render "form" %>
+    <%= render "form-add-cocktail" %>
   </li>
   <% @cocktails.each do |cocktail|%>
     <li class="list-group-item">
       <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h3>
       <div><% cocktail.ingredients.each do |ingredient| %>
-          <span class="label label-success"><%= link_to ingredient.name, ingredient_path(ingredient) %></span>
+          <span class="label label-info"><%= link_to ingredient.name, ingredient_path(ingredient) %></span>
         <% end %></div>
     </li>
   <% end %>
@@ -24,6 +24,7 @@
     $("<%= "#no-#{item}" %>").click(function(element) {
       $(this).slideUp(0);
       $("<%= "#add-#{item}-form" %>").removeClass("hidden");
+      $("#cocktail_name").focus();
       {return false;};
     });
   })

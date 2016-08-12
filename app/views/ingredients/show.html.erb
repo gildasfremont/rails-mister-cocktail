@@ -1,15 +1,30 @@
 <%= link_to "< Liste des cocktails", cocktails_path %>
 <div style="padding: 15px"></div>
 <ul class="list-group">
-  <li class="list-group-item" style="background: #ecf0f1"><h2><%= @ingredient.name.capitalize %></h2></li>
+  <li class="list-group-item" style="background: #ecf0f1">
+    <h2>Cocktails</h2>
+    avec <span class="label label-info"><%= @ingredient.name.capitalize %></span>
+  </li>
   <li class="list-group-item" id='no-cocktail'>
-    <a id="add-cocktail">Ajouter un cocktail à base de <%= @ingredient.name %></a>
+    <a id="add-cocktail">Ajouter un cocktail</a>
   </li>
   <li class="list-group-item hidden" id="add-cocktail-form" style="background: #fafafa">
     <div>
       <%= simple_form_for @cocktail do |f| %>
-      <%= f.input :name, label: false, placeholder: "Donnez-lui un nom" %>
-      <%= f.button :submit, "Ajouter" %> <%= link_to 'Annuler', ingredient_path(@ingredient), class: "btn btn-link" %>
+      <p>Nouveau cocktail</p>
+      <fieldset>
+      <%= f.input :name, label: "Donnez lui un nom...", placeholder: "ex: Cocktail à la bière" %>
+      </fieldset>
+        <%= f.fields_for [@cocktail, @dose] do |d| %>
+          <p><strong>...et un ingredient principal :</strong></p>
+          <fieldset class="form-inline">
+          <%= d.input :ingredient, label: false, collection: @ingredients, selected: @ingredients.find_by_name(@ingredient.name).id %>
+          <%= d.input :quantity, label: false, placeholder: "Quantité en cl" %>
+          <% end %>
+        </fieldset>
+      <fieldset style="padding-top: 1em">
+        <%= f.button :submit, "Ajouter le cocktail", class: "btn btn-success"  %> <%= link_to 'Annuler', cocktails_path, class: "btn btn-link" %>
+      </fieldset>
       <% end %>
     </div>
   </li>
@@ -17,7 +32,7 @@
     <li class="list-group-item">
       <h2><%= link_to cocktail.name, cocktail_path(cocktail) %></h3>
       <div><% cocktail.ingredients.each do |ingredient| %>
-          <span class="label label-success"><%= link_to ingredient.name, ingredient_path(ingredient) %></span>
+          <span class="label label-info"><%= link_to ingredient.name, ingredient_path(ingredient) %></span>
         <% end %></div>
     </li>
   <% end %>

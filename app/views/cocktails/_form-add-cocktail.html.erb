@@ -1,0 +1,18 @@
+<%= simple_form_for @cocktail do |f| %>
+<p>Nouveau cocktail</p>
+<fieldset>
+<%= f.input :name, label: "Donnez lui un nom...", placeholder: "ex: Mojito 2000" %>
+</fieldset>
+  <%= f.fields_for [@cocktail, @dose] do |d| %>
+    <p><strong>...et un ingredient principal :</strong></p>
+    <fieldset class="form-inline">
+    <%= d.input :ingredient, label: false,collection: @ingredients, selected: @ingredients.first %>
+    <%= d.input :quantity, label: false, placeholder: "Quantité en cl" %>
+    <% end %>
+<!--   </fieldset> -->
+<!-- <fieldset style="padding-top: 1em"> -->
+  <%= f.button :submit, "Ajouter le cocktail", class: "btn btn-success"  %> <%= link_to 'Annuler', cocktails_path, class: "btn btn-link" %>
+</fieldset>
+<% end %>
+
+
