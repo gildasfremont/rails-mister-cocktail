@@ -16,12 +16,11 @@
       <%= f.input :name, label: "Donnez lui un nom...", placeholder: "ex: Cocktail à la bière" %>
       </fieldset>
         <%= f.fields_for [@cocktail, @dose] do |d| %>
-          <p><strong>...et un ingredient principal :</strong></p>
+          <p><strong>Ajouter un ingredient :</strong></p>
           <fieldset class="form-inline">
-          <%= d.input :ingredient, label: false, collection: @ingredients, selected: @ingredients.find_by_name(@ingredient.name).id %>
+          <%= d.input :ingredient, label: false,collection: @ingredients, selected: @ingredient.id %>
           <%= d.input :quantity, label: false, placeholder: "Quantité en cl" %>
           <% end %>
-        </fieldset>
       <fieldset style="padding-top: 1em">
         <%= f.button :submit, "Ajouter le cocktail", class: "btn btn-success"  %> <%= link_to 'Annuler', cocktails_path, class: "btn btn-link" %>
       </fieldset>

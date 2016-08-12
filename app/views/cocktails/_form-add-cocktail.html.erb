@@ -9,10 +9,8 @@
     <%= d.input :ingredient, label: false,collection: @ingredients, selected: @ingredients.first %>
     <%= d.input :quantity, label: false, placeholder: "Quantité en cl" %>
     <% end %>
-<!--   </fieldset> -->
-<!-- <fieldset style="padding-top: 1em"> -->
   <%= f.button :submit, "Ajouter le cocktail", class: "btn btn-success"  %> <%= link_to 'Annuler', cocktails_path, class: "btn btn-link" %>
-</fieldset>
+    </fieldset>
 <% end %>
 
 

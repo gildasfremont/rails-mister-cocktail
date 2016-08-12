@@ -1,7 +1,8 @@
-<%= link_to "< Liste des cocktails", cocktails_path %>
-<h2><%= @cocktail.name %></h2>
 <div class="row">
   <ul class="list-group">
+    <li class="list-group-item">
+    <h2><%= @cocktail.name %></h2>
+    </li>
     <li class="list-group-item" style="background: #ecf0f1"><strong>Ingrédients</strong></li>
     <% @cocktail.doses.each do |dose|%>
     <li class="list-group-item">
@@ -14,9 +15,11 @@
     <li class="list-group-item" id="no-ingredient"><a id="add-ingredient" style="padding-left : 10px">Ajouter un ingredient</a></li>
     <li class="list-group-item hidden" id="add-ingredient-form" style="background: #fafafa">
       <%= simple_form_for [@cocktail, @dose] do |f| %>
-        <%= f.input :ingredient, collection: @ingredients, selected: @ingredients.first %>
-        <%= f.input :quantity, label: "Quantité (cl)" %>
-        <%= f.button :submit, "Ajouter l'ingredient" %><%= link_to 'Annuler', cocktail_path(@cocktail), class: "btn btn-link" %>
+      <fieldset class="form-inline">
+        <%= f.input :ingredient, collection: @ingredients, selected: @ingredients.first, label: false %>
+        <%= f.input :quantity, label: false %>
+        <%= f.button :submit, "Ajouter l'ingredient", class: "btn btn-success" %><%= link_to 'Annuler', cocktail_path(@cocktail), class: "btn btn-link" %>
+      </fieldset>
       <% end %>
     </li>
     <li class="list-group-item" style="background: #ecf0f1"></li>
@@ -34,3 +37,5 @@
     });
   })
 </script>
+
+<%= link_to "< Liste des cocktails", cocktails_path %>

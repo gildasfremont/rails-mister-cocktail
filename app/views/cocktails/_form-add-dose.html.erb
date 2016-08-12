@@ -1,5 +1,0 @@
-<%= f.fields_for [@cocktail, @dose] do |d| %>
-<%= d.input :ingredient, collection: @ingredients, selected: @ingredients.first %>
-<%= d.input :quantity, label: "Quantité (cl)" %>
-<% end %>
-
